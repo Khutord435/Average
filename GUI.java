@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -10,6 +11,8 @@ public class GUI implements ActionListener {
     private static JLabel subject2Label;
     private static JLabel subject3Label;
     private static JLabel subject4Label;
+    private static JLabel instructions;
+    private static JLabel emptylabel;
     private static JTextField subject1Box;
     private static JTextField subject2Box;
     private static JTextField subject3Box;
@@ -43,11 +46,17 @@ public class GUI implements ActionListener {
         subject3Label.setBounds(50, 20, 80, 25);
         subject4Label = new JLabel("                            Subject 4");
         subject4Label.setBounds(50, 20, 80, 25);
+        instructions = new JLabel("                 Enter you marks");
+        instructions.setBounds(50, 20, 80, 25);
+        emptylabel = new JLabel("");
 
         // The main user window is created (adds button, lables, textboxes)
         JPanel window = new JPanel();
-        window.setBorder(BorderFactory.createEmptyBorder(100, 50, 100, 55));
+        window.setBackground(Color.decode("9226229"));  //Specified the color decimal
+        window.setBorder(BorderFactory.createEmptyBorder(70, 0, 100, 55));
         window.setLayout(new GridLayout(0, 2));
+        window.add(emptylabel);
+        window.add(instructions);
         window.add(subject1Label); 
         window.add(subject1Box);
         window.add(subject2Label);
@@ -63,18 +72,18 @@ public class GUI implements ActionListener {
         frame.add(window, BorderLayout.CENTER);
         frame.setSize(200, 200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("GUI");
+        frame.setTitle("Average calculator");
         frame.pack();
         frame.setVisible(true);
     }
 
     // Action for when the button is clicked (Calculate the average and display it)
     public void actionPerformed(ActionEvent e) {
-        int num1 = Integer.parseInt(subject1Box.getText());  //Converts strings in the boxes to int
-        int num2 = Integer.parseInt(subject2Box.getText());
-        int num3 = Integer.parseInt(subject3Box.getText());
-        int num4 = Integer.parseInt(subject4Box.getText());
-        int average = (num1 + num2 + num3 + num4)/4;         //Converts int to strng vvvv
+        float num1 = Float.parseFloat(subject1Box.getText());  //Converts strings in the boxes to floats
+        float num2 = Float.parseFloat(subject2Box.getText());
+        float num3 = Float.parseFloat(subject3Box.getText());
+        float num4 = Float.parseFloat(subject4Box.getText());
+        float average = (num1 + num2 + num3 + num4)/4;         //Converts float to strng vvvv
         averageLabel.setText("                Your average is:  " + String.valueOf(average));
     }
 
